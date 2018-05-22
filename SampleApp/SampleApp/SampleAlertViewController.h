@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *const kTermsAndPolicyAcceptedKey = @"kTermsAndPolicyAccepted";
-
 @interface SampleAlertViewController : UIViewController
 
 @end
