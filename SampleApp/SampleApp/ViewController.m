@@ -18,15 +18,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (IBAction)registerUser:(id)sender {
-    // "Register User" button clicked
-    if ([NSUserDefaults.standardUserDefaults boolForKey:kTermsAndPolicyAcceptedKey]) {
-        [PlacedAgent registerUser];
-    } else {
+    if (![PlacedAgent isUserRegistered]) {
+        // If the user isn't registered with the Placed SDK, we'll show them the EULA so they can opt in.
         [self presentViewController:[SampleAlertViewController new] animated:YES completion:nil];
+    } else {
+        UIAlertController *successAlert = [UIAlertController
+                                            alertControllerWithTitle:@"User registered!"
+                                            message:@"The user is registered and the Placed SDK is running."
+                                            preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction
+                                    actionWithTitle:@"OK"
+                                    style:UIAlertActionStyleDefault
+                                    handler:nil];
+        [successAlert addAction:okButton];
+        [self presentViewController:successAlert animated:YES completion:nil];
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "SampleAlertViewController.h"
+#import <Placed/PlacedAgent.h>
 
 @interface SampleAlertViewController ()
 
@@ -25,21 +26,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Actions
 - (IBAction)accept:(id)sender {
-    [NSUserDefaults.standardUserDefaults setBool:YES forKey:kTermsAndPolicyAcceptedKey];
+    // User has accepted the EULA. Call registerUser to start up the Placed SDK.
+    [PlacedAgent registerUser];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)dismiss:(id)sender {
+    // User has declined the EULA. Call deregisterUser to make sure the Placed SDK is shut down.
+    [PlacedAgent deregisterUser];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
