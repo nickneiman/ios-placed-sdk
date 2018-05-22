@@ -16,6 +16,8 @@ $ gem install cocoapods
 
 To integrate the Placed SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 ```ruby
+use_frameworks!
+
 pod 'Placed', :git => 'https://github.com/placed/ios-placed-sdk.git'
 ```
 Then, run the following command:
